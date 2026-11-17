@@ -196,36 +196,74 @@ function initTypewriter() {
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
 
+  function activateElement(el) {
+    if (el.classList.contains('active')) return;
+    el.classList.add('active');
+
+    // Animate any number counters inside this revealed block
+    const counters = el.querySelectorAll('.counter-val');
+    counters.forEach(counter => {
+      if (!counter.dataset.animated) {
+        animateCounter(counter);
+        counter.dataset.animated = 'true';
+      }
+    });
+
+    // Animate any progress bars
+    const bars = el.querySelectorAll('.skill-bar-fill');
+    bars.forEach(bar => {
+      const targetWidth = bar.dataset.targetWidth || '80%';
+      bar.style.width = targetWidth;
+    });
+  }
+
+  // Use threshold: 0 so tall sections on mobile (like 9 stacked certificates) trigger immediately upon entering viewport
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-
-        // Animate any number counters inside this revealed block
-        const counters = entry.target.querySelectorAll('.counter-val');
-        counters.forEach(counter => {
-          if (!counter.dataset.animated) {
-            animateCounter(counter);
-            counter.dataset.animated = 'true';
-          }
-        });
-
-        // Animate any progress bars
-        const bars = entry.target.querySelectorAll('.skill-bar-fill');
-        bars.forEach(bar => {
-          const targetWidth = bar.dataset.targetWidth || '80%';
-          bar.style.width = targetWidth;
-        });
-
+        activateElement(entry.target);
         obs.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0,
+    rootMargin: '0px 0px 60px 0px'
   });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Lightweight scroll/resize fallback to guarantee zero blank gaps on mobile browsers
+  function checkVisibleFallback() {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    reveals.forEach(el => {
+      if (!el.classList.contains('active')) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= vh + 80 && rect.bottom >= -80) {
+          activateElement(el);
+          observer.unobserve(el);
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkVisibleFallback, { passive: true });
+  window.addEventListener('resize', checkVisibleFallback, { passive: true });
+  checkVisibleFallback();
+
+  // Directly observe skill bars so they always animate even without outer section .reveal
+  const allBars = document.querySelectorAll('.skill-bar-fill');
+  if (allBars.length > 0) {
+    const barObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          bar.style.width = bar.dataset.targetWidth || '80%';
+          obs.unobserve(bar);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 40px 0px' });
+    allBars.forEach(bar => barObserver.observe(bar));
+  }
 }
 
 // Counter Animator
