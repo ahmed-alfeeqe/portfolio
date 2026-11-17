@@ -37,6 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 10. Contact Form & WhatsApp Handlers
   initContactHandlers();
+
+  // 11. Interactive Certificates Gallery & Lightbox Modal
+  initCertificatesGallery();
+
+  // 12. Interactive Project Video Demo Modal
+  initVideoModal();
 });
 
 // --------------------------------------------------------------------------
@@ -532,7 +538,7 @@ function initContactHandlers() {
       const subject = encodeURIComponent(`Data Analytics Inquiry from ${name}`);
       const body = encodeURIComponent(`Hi Ahmed,\n\nMy name is ${name} (${email}).\n\n${message}\n\nBest regards,\n${name}`);
 
-      window.location.href = `mailto:ahmedzaki8545@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:ahmed.alfeeqi@gmail.com?subject=${subject}&body=${body}`;
 
       if (formSuccess) {
         formSuccess.classList.remove('hidden');
@@ -551,4 +557,208 @@ function initContactHandlers() {
       window.open(`https://wa.me/201097175629?text=${text}`, '_blank');
     });
   }
+}
+
+// --------------------------------------------------------------------------
+// 11. Interactive Certificates Gallery & Lightbox Modal
+// --------------------------------------------------------------------------
+function initCertificatesGallery() {
+  const filterBtns = document.querySelectorAll('.cert-filter-btn');
+  const certCards = document.querySelectorAll('.cert-card');
+  const modal = document.getElementById('cert-modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitle = document.getElementById('modal-title');
+  const modalIssuer = document.getElementById('modal-issuer');
+  const modalDate = document.getElementById('modal-date');
+  const modalCounter = document.getElementById('modal-counter');
+  const modalPdfLink = document.getElementById('modal-pdf-link');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const prevBtn = document.getElementById('modal-prev-btn');
+  const nextBtn = document.getElementById('modal-next-btn');
+
+  // Filter Buttons Logic
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('text-slate-950', 'bg-gradient-to-r', 'from-emerald-400', 'to-cyan-400', 'font-semibold', 'shadow-md', 'active');
+          b.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
+        });
+        btn.classList.add('text-slate-950', 'bg-gradient-to-r', 'from-emerald-400', 'to-cyan-400', 'font-semibold', 'shadow-md', 'active');
+        btn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
+
+        const filter = btn.getAttribute('data-filter');
+        certCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // Build list of certificates for modal carousel
+  const triggers = document.querySelectorAll('.cert-img-trigger, .cert-open-btn');
+  if (!modal || triggers.length === 0) return;
+
+  const certData = [];
+  document.querySelectorAll('.cert-img-trigger').forEach((trigger, idx) => {
+    certData.push({
+      img: trigger.getAttribute('data-img'),
+      title: trigger.getAttribute('data-title'),
+      issuer: trigger.getAttribute('data-issuer'),
+      date: trigger.getAttribute('data-date'),
+      pdf: trigger.getAttribute('data-pdf') || ''
+    });
+  });
+
+  let currentIndex = 0;
+
+  function renderModalIndex(idx) {
+    if (idx < 0) idx = certData.length - 1;
+    if (idx >= certData.length) idx = 0;
+    currentIndex = idx;
+
+    const item = certData[currentIndex];
+    if (!item) return;
+
+    modalImg.src = item.img;
+    modalImg.alt = item.title;
+    modalTitle.textContent = item.title;
+    modalIssuer.textContent = item.issuer;
+    modalDate.textContent = item.date;
+    modalCounter.textContent = `${currentIndex + 1} / ${certData.length}`;
+
+    if (item.pdf) {
+      modalPdfLink.href = item.pdf;
+      modalPdfLink.classList.remove('hidden');
+      modalPdfLink.classList.add('inline-flex');
+    } else {
+      modalPdfLink.classList.add('hidden');
+      modalPdfLink.classList.remove('inline-flex');
+    }
+  }
+
+  function openModal(idx) {
+    renderModalIndex(idx);
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      modal.classList.remove('opacity-0');
+      modal.classList.add('opacity-100');
+    });
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  function closeModal() {
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+    setTimeout(() => {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 250);
+  }
+
+  // Attach click listeners to cards/triggers
+  document.querySelectorAll('.cert-card').forEach((card, cardIndex) => {
+    const trigger = card.querySelector('.cert-img-trigger');
+    const btn = card.querySelector('.cert-open-btn');
+
+    if (trigger) {
+      trigger.addEventListener('click', () => openModal(cardIndex));
+    }
+    if (btn) {
+      btn.addEventListener('click', () => openModal(cardIndex));
+    }
+  });
+
+  // Modal Controls
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (prevBtn) prevBtn.addEventListener('click', () => renderModalIndex(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => renderModalIndex(currentIndex + 1));
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('flex')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') renderModalIndex(currentIndex - 1);
+      if (e.key === 'ArrowRight') renderModalIndex(currentIndex + 1);
+    }
+  });
+}
+
+// --------------------------------------------------------------------------
+// 12. Interactive Project Video Demo Modal
+// --------------------------------------------------------------------------
+function initVideoModal() {
+  const videoModal = document.getElementById('video-modal');
+  const videoIframe = document.getElementById('video-modal-iframe');
+  const videoTitle = document.getElementById('video-modal-title');
+  const videoDesc = document.getElementById('video-modal-desc');
+  const videoYtLink = document.getElementById('video-modal-yt-link');
+  const videoCloseBtn = document.getElementById('video-modal-close-btn');
+  const triggers = document.querySelectorAll('.video-trigger');
+
+  if (!videoModal || !videoIframe) return;
+
+  function openVideoModal(videoId, title, desc) {
+    if (videoTitle) videoTitle.textContent = title || 'Project Video Walkthrough';
+    if (videoDesc) videoDesc.textContent = desc || 'Interactive Demo';
+    if (videoYtLink) videoYtLink.href = `https://youtu.be/${videoId}`;
+    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+    videoModal.classList.remove('hidden');
+    videoModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      videoModal.classList.remove('opacity-0');
+      videoModal.classList.add('opacity-100');
+    });
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  function closeVideoModal() {
+    videoModal.classList.remove('opacity-100');
+    videoModal.classList.add('opacity-0');
+    setTimeout(() => {
+      videoIframe.src = '';
+      videoModal.classList.remove('flex');
+      videoModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 250);
+  }
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const videoId = trigger.getAttribute('data-video-id');
+      const title = trigger.getAttribute('data-video-title');
+      const desc = trigger.getAttribute('data-video-desc');
+      if (videoId) {
+        openVideoModal(videoId, title, desc);
+      }
+    });
+  });
+
+  if (videoCloseBtn) {
+    videoCloseBtn.addEventListener('click', closeVideoModal);
+  }
+
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) closeVideoModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal.classList.contains('flex')) {
+      closeVideoModal();
+    }
+  });
 }

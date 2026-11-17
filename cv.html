@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ahmed Alfeqi - Resume</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 0.5in 0.55in;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      color: #000;
+      background: #fff;
+      font-size: 10.5pt;
+      line-height: 1.35;
+      padding: 0.5in 0.55in;
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+    @media print {
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .name {
+      font-size: 18pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .contact-info {
+      font-size: 9.5pt;
+      line-height: 1.4;
+    }
+    .contact-info span {
+      margin: 0 4px;
+    }
+    .section-title {
+      font-size: 11pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 10.5pt;
+    }
+    .entry-title {
+      font-weight: bold;
+    }
+    .entry-subtitle {
+      font-style: italic;
+    }
+    .entry-date, .entry-location {
+      font-size: 9.5pt;
+    }
+    .entry-date {
+      font-weight: bold;
+    }
+    ul {
+      margin-left: 18px;
+      margin-top: 3px;
+      margin-bottom: 6px;
+    }
+    li {
+      margin-bottom: 2.5px;
+      text-align: justify;
+    }
+    p {
+      text-align: justify;
+      margin-bottom: 5px;
+    }
+    .skills-list p {
+      margin-bottom: 3px;
+      text-align: left;
+    }
+    /* Toolbar for instant print */
+    .toolbar {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #111827;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-family: sans-serif;
+      font-size: 13px;
+      z-index: 1000;
+    }
+    .toolbar button {
+      background: #10b981;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .toolbar button:hover {
+      background: #059669;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Printable Toolbar Button -->
+  <div class="toolbar no-print">
+    <span>Ready to save as PDF:</span>
+    <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <h1 class="name">AHMED ALFEQI</h1>
+    <div class="contact-info">
+      Cairo, Egypt &bull; +20 109 717 5629 &bull; <a href="mailto:ahmed.alfeeqi@gmail.com">ahmed.alfeeqi@gmail.com</a><br>
+      <a href="https://linkedin.com/in/ahmed-mohamed-ab4702295" target="_blank">linkedin.com/in/ahmed-mohamed-ab4702295</a> &bull; 
+      <a href="https://github.com/ahmed-alfeeqe" target="_blank">github.com/ahmed-alfeeqe</a> &bull; 
+      <a href="https://ahmed-alfeeqe.github.io/portfolio/" target="_blank">ahmed-alfeeqe.github.io/portfolio</a>
+    </div>
+  </header>
+
+  <!-- Professional Summary -->
+  <section>
+    <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+    <p>
+      Motivated and detail-oriented Data Analyst with a strong foundation in data modeling, visualization, and analytical programming. Proficient in leveraging Power BI, SQL, Python, and Excel to transform complex datasets into actionable business insights. Demonstrated exceptional problem-solving abilities through qualifying for the Egyptian Collegiate Programming Contest (ECPC). Possesses a strong leadership background as an Instructor Assistant, Technical Coach, and HR Head, seeking to apply analytical expertise and a proactive mindset to a dynamic data-driven environment.
+    </p>
+  </section>
+
+  <!-- Technical Skills -->
+  <section>
+    <h2 class="section-title">TECHNICAL SKILLS</h2>
+    <div class="skills-list">
+      <p>&bull; <strong>Data Analysis & Visualization:</strong> Power BI, Advanced Excel, Data Modeling, DAX, Star Schema.</p>
+      <p>&bull; <strong>Programming & Databases:</strong> SQL, Python, C++, Data Structures & Algorithms.</p>
+      <p>&bull; <strong>Soft Skills:</strong> Analytical Thinking, Complex Problem Solving, Team Leadership, Mentoring & Coaching, Effective Communication.</p>
+      <p>&bull; <strong>Languages:</strong> Arabic (Native), English (Intermediate - B1).</p>
+    </div>
+  </section>
+
+  <!-- Work & Leadership Experience -->
+  <section>
+    <h2 class="section-title">WORK & LEADERSHIP EXPERIENCE</h2>
+    
+    <!-- GDG on Campus Obour -->
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">Google Developer Groups on Campus (GDG) &bull; Obour Institutes</span>
+        <span class="entry-location">Cairo, Egypt</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Data Analysis Track Lead</span>
+        <span class="entry-date">2026 &ndash; Present</span>
+      </div>
+      <ul>
+        <li>Lead and direct the technical curriculum for the Data Analysis track, designing hands-on roadmap materials for aspiring analysts.</li>
+        <li>Conduct comprehensive workshops covering Excel, Power BI, SQL, and Python data manipulation and reporting.</li>
+        <li>Mentor student cohorts through practical capstone projects, analytics fundamentals, and data-driven problem solving.</li>
+      </ul>
+    </div>
+
+    <!-- iSchool -->
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">iSchool</span>
+        <span class="entry-location">Cairo, Egypt (On-site)</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Coding & Tech Instructor (Part-Time)</span>
+        <span class="entry-date">Jun 2026 &ndash; Present</span>
+      </div>
+      <ul>
+        <li>Assist Lead Instructors in delivering interactive computer science, coding, and programming sessions for students.</li>
+        <li>Guide students through hands-on technical exercises, troubleshooting errors, and explaining core programming logic.</li>
+        <li>Evaluate student assignments and projects, providing constructive, structured feedback to optimize their learning curves.</li>
+      </ul>
+    </div>
+
+    <!-- CPC -->
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">Competitive Programming Community (CPC)</span>
+        <span class="entry-location">Cairo, Egypt</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Technical Coach & Head of HR</span>
+        <span class="entry-date">2024 &ndash; 2025</span>
+      </div>
+      <ul>
+        <li><strong>Technical Coaching:</strong> Mentored and trained students in C++, Data Structures, and Algorithms, significantly improving their logical reasoning and coding performance.</li>
+        <li><strong>HR Leadership:</strong> Directed the HR department by managing end-to-end recruitment, organizing member evaluations, and facilitating soft-skills development sessions.</li>
+        <li><strong>Key Achievement:</strong> Successfully qualified for the prestigious Egyptian Collegiate Programming Contest (ECPC), demonstrating advanced algorithmic problem-solving skills under pressure.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Data Projects -->
+  <section>
+    <h2 class="section-title">DATA PROJECTS</h2>
+    
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">SWVL Operational & Financial Performance Dashboard</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Data Analyst</span>
+        <span class="entry-location"><a href="https://github.com/ahmed-alfeeqe" target="_blank">View on GitHub</a></span>
+      </div>
+      <ul>
+        <li>Designed and developed an interactive Power BI dashboard to analyze SWVL’s operational and financial metrics, integrating sales, customer behavior, and regional data.</li>
+        <li>Built a robust, clean data model utilizing a Star Schema and formulated advanced DAX measures to track KPIs such as Total Revenue, Profit Margin, and YoY Growth.</li>
+        <li>Implemented Row-Level Security (RLS) for dynamic data governance and localized access control.</li>
+        <li>Created dynamic drill-down visualizations for deep-dive analysis into regional orders, currency exchange impact, taxes by territory, and weekend vs. business day performance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <h2 class="section-title">EDUCATION</h2>
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">Obour Institutes</span>
+        <span class="entry-location">Cairo, Egypt</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Bachelor’s Degree Student (Senior / 4th Year)</span>
+        <span class="entry-date">Expected Graduation: 2027</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Training -->
+  <section>
+    <h2 class="section-title">CERTIFICATIONS & HONORS</h2>
+    
+    <!-- EraaSoft Academy -->
+    <div>
+      <div class="entry-header">
+        <span class="entry-title">100-Hour Data Analyst Professional Diploma</span>
+        <span class="entry-date">Jan 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">EraaSoft Academy</span>
+        <span class="entry-location">Cairo, Egypt &bull; <a href="eraasoft-data-analysis-diploma.pdf" target="_blank">View Certificate</a></span>
+      </div>
+      <ul>
+        <li>Completed 100 accredited training hours gaining solid hands-on experience in <strong>Excel, Power BI, SQL, and Python</strong>.</li>
+        <li>Mastered end-to-end data manipulation, business KPI calculation, relational modeling, and executive storytelling.</li>
+      </ul>
+    </div>
+
+    <!-- IBM SkillsBuild Data Fundamentals -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">Data Fundamentals</span>
+        <span class="entry-date">Sep 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">IBM-SkillsBuild</span>
+        <span class="entry-location"><a href="https://www.credly.com/badges/9f31ad61-aecd-480f-bdbb-1589eff13465" target="_blank">Verify on Credly</a></span>
+      </div>
+      <ul>
+        <li>Big data foundations, data lifecycle architectures, data quality, and enterprise analytical frameworks.</li>
+      </ul>
+    </div>
+
+    <!-- iSchool Certificate of Completion -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">Certificate of Completion &ndash; Dedicated Tutor</span>
+        <span class="entry-date">Oct 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">iSchool &bull; Aya Elnaggar (Head of Education)</span>
+        <span class="entry-location">Cairo, Egypt (On-site)</span>
+      </div>
+      <ul>
+        <li>Completed the 2026 Intake educating the next generation of tech leaders. STEM and IAIDL accredited.</li>
+      </ul>
+    </div>
+
+    <!-- Data Engineering Camp -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">Data Engineering Camp</span>
+        <span class="entry-date">Apr 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Alaa Essam & Ibrahim El Nwasany</span>
+        <span class="entry-location"><a href="assets/certificates/data-engineering-camp.jpg" target="_blank">View Certificate</a></span>
+      </div>
+      <ul>
+        <li>Hands-on training in Data Pipelines Architecture, ETL Processes, SQL for Data Engineering, and Data Warehousing concepts.</li>
+      </ul>
+    </div>
+
+    <!-- NASA Space Apps Challenge -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">NASA Space Apps Challenge &ndash; Galactic Problem Solver</span>
+        <span class="entry-date">Nov 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">NASA Space Apps Challenge &bull; Marc Kuchner</span>
+        <span class="entry-location"><a href="assets/certificates/nasa-space-apps.png" target="_blank">View Certificate</a></span>
+      </div>
+      <ul>
+        <li>Collaborative problem solving and analytical modeling addressing Earth and space science challenges.</li>
+      </ul>
+    </div>
+
+    <!-- ICPC ECPC Qualifications -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">Egyptian Collegiate Programming Contest (ECPC) Qualifications</span>
+        <span class="entry-date">2024 &ndash; 2026</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">International Collegiate Programming Contest (ICPC) Foundation</span>
+        <span class="entry-location">Cairo, Egypt</span>
+      </div>
+      <ul>
+        <li>Ranked 168th Place (2026), 122nd Place (2025), and 174th Place (2024) representing Higher Obour Institute in high-stakes algorithmic contests.</li>
+      </ul>
+    </div>
+
+    <!-- Coach Academy -->
+    <div style="margin-top: 6px;">
+      <div class="entry-header">
+        <span class="entry-title">Problem Solving Level 2 Certificate</span>
+        <span class="entry-date">2025</span>
+      </div>
+      <div class="entry-header">
+        <span class="entry-subtitle">Coach Academy &bull; Coach Mohamed Abdel Wahab (FCIH Head Coach)</span>
+        <span class="entry-location"><a href="coach-academy-problem-solving.pdf" target="_blank">View Certificate</a></span>
+      </div>
+      <ul>
+        <li>Advanced algorithmic problem solving, dynamic programming, graph traversal, and time/space complexity optimization.</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
